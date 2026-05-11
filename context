@@ -1,0 +1,70 @@
+## What's Built So Far
+
+**Backend — fully working:**
+- `backend/config.py` — all settings from `.env`, no hardcoded values
+- `backend/core/ocean_lookup.py` — GPS → Jerlov water type engine
+- `backend/core/water_physics.py` — Jaffe-McGlamery physics degradation
+- `backend/core/uiqm.py` — no-reference image quality metric
+- `backend/pipeline/clahe_enhancer.py` — auto-adaptive CLAHE enhancement
+- `backend/pipeline/detector.py` — YOLOv8 threat detector (simulation mode)
+- `backend/api/routes.py` — FastAPI REST + WebSocket + frame endpoints
+- `backend/main.py` — app entry point
+
+**Frontend — partially working:**
+- `frontend/src/hooks/useStream.js` — WebSocket hook
+- `frontend/src/hooks/usePhysics.js` — physics state + GPS hook
+- `frontend/src/components/VideoPanel.jsx` — raw/enhanced panels + bounding boxes
+- `frontend/src/App.jsx` — root layout
+- `frontend/src/index.css` — full dark ocean theme
+
+**What's confirmed working:**
+- ✅ Pipeline processes frames at 25+ FPS
+- ✅ CLAHE enhancement UIQM gain +0.37
+- ✅ Threat detection — Torpedo, Smuggler Barrel, Hostile Diver, Parasite Container
+- ✅ Severity badges — CRITICAL/HIGH/CLEAR
+- ✅ Bounding boxes with corner accents drawing correctly
+- ✅ All REST endpoints responding
+- ✅ WebSocket delivering detections + metrics
+
+**Current blocker:**
+- ❌ Video frames show black — HTTP frame polling times out because backend thread is busy
+
+---
+
+## What Still Needs to Be Built
+
+```
+Step 12 — Fix frame rendering (background thread cache)   ← current
+Step 13 — Ocean simulator with draggable ROV
+           - Interactive ocean scene (SVG/Canvas)
+           - Drag ROV up/down to change depth
+           - Depth → physics state update
+Step 14 — GPS map panel
+           - Leaflet map
+           - Drag-and-drop marker
+           - Auto water type detection from coordinates
+Step 15 — Physics controls panel
+           - Turbidity slider
+           - Water type dropdown
+           - Ambient light, salinity, temperature, current
+Step 16 — Metrics dashboard
+           - UIQM live chart (Recharts)
+           - Threat history timeline
+           - Pipeline stats (FPS, inference ms, frames processed)
+Step 17 — Threat log panel
+           - Scrollable detection history
+           - Severity filter
+           - Timestamp per detection
+Step 18 — Full dashboard layout
+           - All panels assembled into final layout
+           - Responsive grid
+Step 19 — Alert system
+           - Critical threat audio ping
+           - Visual flash on critical detection
+Step 20 — Final polish
+           - Loading states
+           - Connection recovery UI
+           - Export detection log as JSON
+```
+
+---

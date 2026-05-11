@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --ocean-deep:    #020d1a;
+  --ocean-mid:     #041628;
+  --ocean-surface: #062038;
+  --ocean-accent:  #0a3d5c;
+  --teal-glow:     #00d4ff;
+  --teal-dim:      #0099bb;
+  --green-safe:    #00ff88;
+  --amber-warn:    #ffaa00;
+  --red-critical:  #ff3344;
+  --panel-bg:      rgba(4, 22, 40, 0.85);
+  --panel-border:  rgba(0, 212, 255, 0.15);
+  --text-primary:  #e0f4ff;
+  --text-secondary:#7eb8d4;
+  --text-dim:      #3a6a88;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--ocean-deep);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar       { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--ocean-mid); }
+::-webkit-scrollbar-thumb { background: var(--teal-dim); border-radius: 2px; }
+
+.glow-teal  { box-shadow: 0 0 12px rgba(0,212,255,0.3); }
+.glow-red   { box-shadow: 0 0 12px rgba(255,51,68,0.5); }
+.glow-green { box-shadow: 0 0 12px rgba(0,255,136,0.3); }
+.glow-amber { box-shadow: 0 0 12px rgba(255,170,0,0.3); }
+
+.panel {
+  background:    var(--panel-bg);
+  border:        1px solid var(--panel-border);
+  border-radius: 8px;
+  backdrop-filter: blur(12px);
+}
+
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+@keyframes pulse-teal {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+@keyframes float-up {
+  0%   { transform: translateY(0px);  opacity: 0.6; }
+  100% { transform: translateY(-8px); opacity: 1;   }
+}
+
+.animate-pulse-red  { animation: pulse-red  1.2s ease-in-out infinite; }
+.animate-pulse-teal { animation: pulse-teal 2.0s ease-in-out infinite; }
+.animate-float      { animation: float-up   3.0s ease-in-out infinite alternate; }
+
+.leaflet-container {
+  background: #020d1a !important;
+  font-family: 'Inter', sans-serif !important;
+}
+.leaflet-tile { filter: brightness(0.55) saturate(0.6) hue-rotate(180deg); }
+.leaflet-control-attribution { display: none; }
